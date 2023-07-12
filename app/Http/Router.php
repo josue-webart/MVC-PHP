@@ -4,6 +4,7 @@ namespace App\Http;
 
 use \Closure;
 use \Exception;
+use \ReflectionFunction;
 
 class Router {
 
@@ -66,6 +67,16 @@ class Router {
                 unset($params[$key]);
                 continue;
             }
+        }
+
+        //VARIAVEIS DA ROTA
+        $params['variables'] = [];
+
+        //PADRAO DE VALIDAÇAO DAS VARIAVEIS DAS ROTAS
+        $patternVariabel = '/{(.*?)}/';
+        if (preg_match_all($patternVariabel,$route,$matches)) {
+            $route = preg_replace($patternVariabel, '(.*?)',$route);
+            $params['variables'] = $matches[1];
         }
 
         //PADRAO DE VALIDAÇAO DA URL
@@ -139,10 +150,18 @@ class Router {
         //VALIDA AS ROTAS
         foreach ($this->routes as $patternRoute=>$methods) {
             //VERIFICA SE A URI BATE O PADRAO
-            if(preg_match($patternRoute, $uri)){
+            if(preg_match($patternRoute, $uri,$matches)){
                 //VERFICA O METODO
-                if ($methods[$httpMethod]) {
-                    //RETORNO DAS VARIAVEIS
+                if (isset($methods[$httpMethod])) {
+                    //REMOVE A PRIMEIRA POSIÇAO
+                    unset($matches[0]);  
+                    
+                    //VARIAVEIS PROCESADAS
+                    $keys = $methods[$httpMethod]['variables']; 
+                    $methods[$httpMethod]['variables'] = array_combine($keys,$matches);
+                    $methods[$httpMethod]['variables']['request'] = $this->request;
+
+                    //RETORNO DOS PARAMETROS DA ROTA
                     return $methods[$httpMethod];    
                 }
                 //METODO NAO PERMITIDO/DEFINIDO
@@ -166,14 +185,30 @@ class Router {
         try {
             //OBTEM A ROTA ATUAL
             $route = $this->getRoute();
-            echo "<pre>";
-            print_r($route);
-            echo "</pre>"; exit;
+
+            //VERIFICA O CONTRROLADOR
+            if (!isset($route['controller'])) {
+                throw new Exception("A URL não pode ser processada", 500);   
+            }
+            //ARGUMENTOS DA FUNÇAO
+            $args = [];
+
+            //REFLECTION
+            $reflection = new ReflectionFunction($route['controller']);
+            foreach ($reflection->getParameters() as $parameter) {
+                $name = $parameter->getName();
+                $args[$name] = $route['variables'][$name] ?? '';
+
+            }
+
+
+            //RETORNA A EXECUÇAO DA FUNÇAO
+            return call_user_func_array($route['controller'],$args);
             
         } catch (Exception $e) {
             return new Response($e->getCode(),$e->getMessage());
         }
 
-
     }
 }
+
