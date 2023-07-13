@@ -165,17 +165,12 @@ class Router {
                     return $methods[$httpMethod];    
                 }
                 //METODO NAO PERMITIDO/DEFINIDO
-                throw new Exception("Metodo não é permitido", 405);
-                
+                throw new Exception("Metodo não é permitido", 405); 
             }
-        
         }
-
         //URL NAO ENCONTRADA
         throw new Exception("URL não encontrada", 404);
     }
-
-    
 
     /**
      * Metodo responsavel por executar a rota atual

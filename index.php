@@ -1,23 +1,10 @@
 <?php
 
-
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/includes/app.php';
 
 use \App\Http\Router;
-use App\Utils\View;
-use \WilliamCosta\DotEnv\Environment;
 
-//CARREGA VARIAVEIS DE AMBIENTE
-Environment::load(__DIR__);
-
-//DEFINE A CONSTANTE DE UR DO PROJETO
-define('URL', getenv('URL'));
-
-//DEFINE VALOR PADRAO DAS VARIAVEIS
-View::init([
-    'URL' => URL
-]);
-
+//INICIA O ROUTER
 $obRouter = new Router(URL);
 
 //INCLUI AS ROTAS DA PAGINA
@@ -29,8 +16,4 @@ $obRouter->run()->sendResponse();
 
 
 
-//debuge
-// echo "<pre>";
-// print_r($obRouter);
-// echo "</pre>";
-// exit;
+
