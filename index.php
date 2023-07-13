@@ -1,13 +1,17 @@
 <?php
 
+
 require __DIR__.'/vendor/autoload.php';
 
 use \App\Http\Router;
 use App\Utils\View;
+use \WilliamCosta\DotEnv\Environment;
 
-use function Composer\Autoload\includeFile;
+//CARREGA VARIAVEIS DE AMBIENTE
+Environment::load(__DIR__);
 
-define('URL', 'http://127.0.0.1:8080');
+//DEFINE A CONSTANTE DE UR DO PROJETO
+define('URL', getenv('URL'));
 
 //DEFINE VALOR PADRAO DAS VARIAVEIS
 View::init([
