@@ -38,20 +38,29 @@ class Testimony{
         //DEFINE A DATA
         $this->data = date('Y-m-d H:i:s');
         
-        //INSERE O DEPOIMENTOS NO BANDO DE DADOS
-        $this->id = (new Database('depoimento'))->insert([
+        //INSERE O DEPOIMENTOS NO BANCO DE DADOS
+        $this->id = (new Database('depoimentos'))->insert([
             'nome'=> $this->nome,
             'mensagem'=> $this->mensagem,
             'data' => $this->data,
 
         ]);
+        //SUCESSO
         return true;
-        // echo "<pre>";
-        // print_r($this);
-        // echo"</pre>";
-        // exit;
     }
 
+    /**
+     * Metodo responsavel por retornar Depoimentos
+     *
+     * @param string $where
+     * @param string $order
+     * @param string $limit
+     * @param string $field
+     * @return PDOStatement
+     */
+    public static function getTestimonies($where = null, $order = null, $limit = null, $fields = '*'){
+        return (new Database('depoimentos'))->select($where,$order, $limit, $fields);
+    }
 
 
 }
