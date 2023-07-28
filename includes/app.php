@@ -5,6 +5,7 @@ require __DIR__.'/../vendor/autoload.php';
 use App\Utils\View;
 use \WilliamCosta\DotEnv\Environment;
 use \WilliamCosta\DatabaseManager\Database;
+use \App\Http\Middleware\Queue as MiddlewareQueue;
 
 //CARREGA VARIAVEIS DE AMBIENTE
 Environment::load(__DIR__.'/../');
@@ -26,8 +27,12 @@ View::init([
     'URL' => URL
 ]);
 
-// //debuge
-// echo "<pre>";
-// print_r(getenv('URL'));
-// echo "</pre>";
-// exit;
+//DEFINE O MAPEAMENTO DE MIDDLEWARES
+MiddlewareQueue::setMap([
+    'maintenance' => \App\Http\Middleware\Maintenance::class
+]);
+
+//DEFINE O MAPEAMENTO DE MIDDLEWARES
+MiddlewareQueue::setDefault([
+    'maintenance'
+]);

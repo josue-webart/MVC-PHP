@@ -30,15 +30,3 @@ $obRouter->post('/depoimentos',[
         return new Response(200,Pages\Testimony::insertTestimny($request));
     }
 ]);
-
-// //ROTA DINAMICA
-// $obRouter->get('/pagina/{idPagina}/{acao}',[
-//     function($idPagina, $acao){
-//         return new Response(200,'Pagina '. $idPagina.' - '.$acao);
-//     }
-// ]);
-
-// echo "<pre>";
-// print_r($request);
-// echo "</pre>";
-// exit;
