@@ -31,7 +31,7 @@ class Testimony{
     public $data;
 
     /**
-     * Metodo Responsavel por cadastrar a instancia atual no bando de dados
+     * Metodo Responsavel por cadastrar a instancia atual no banco de dados
      * @return boolean
      */
     public function cadastrar(){
@@ -62,5 +62,39 @@ class Testimony{
         return (new Database('depoimentos'))->select($where,$order, $limit, $fields);
     }
 
+    /**
+     * Metodo responsavel por retornar um depoimento com base no seu ID
+     * @param [type] $id
+     * @return Testimony
+     */
+    public static function getTestimonyById($id){
+        return self::getTestimonies('id = '.$id)->fetchObject(self::class);
+    }
+
+    /**
+     * Metodo Responsavel por atualizar a instancia atual no banco de dados
+     * @return boolean
+     */
+    public function atualizar(){
+        
+        //ATUALIZA O DEPOIMENTOS NO BANCO DE DADOS
+        return (new Database('depoimentos'))->update('id = '.$this->id,[
+            'nome'=> $this->nome,
+            'mensagem'=> $this->mensagem,
+        ]);
+    }
+
+    /**
+     * Metodo Responsavel por excluir um depoimento no banco de dados
+     * @return boolean
+     */
+    public function excluir(){
+        
+        //EXCLUI O DEPOIMENTOS NO BANCO DE DADOS
+        return (new Database('depoimentos'))->delete('id = '.$this->id,[
+            'nome'=> $this->nome,
+            'mensagem'=> $this->mensagem,
+        ]);
+    }
 
 }

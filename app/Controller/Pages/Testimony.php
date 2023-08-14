@@ -7,6 +7,7 @@ use \App\Model\Entity\Testimony as EntityTestimony;
 use \WilliamCosta\DatabaseManager\Pagination;
 
 class Testimony extends Page{
+    
     /**
      * Metodo responsavel por obter a renderizçao dos itens de depoimentos para a pagina
      * @param Request $request
@@ -66,7 +67,7 @@ class Testimony extends Page{
      * @param Request $request
      * @return string
      */
-    public static function insertTestimny($request){
+    public static function insertTestimony($request){
         //DADOS DO POST
         $postVars = $request->getPostVars();
 

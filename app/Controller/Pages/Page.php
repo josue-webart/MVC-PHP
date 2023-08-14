@@ -45,15 +45,15 @@ class Page{
         $url = $request->getRouter()->getCurrentUrl();
 
         //GET
-        $querryparams = $request->getQueryParams();
+        $querryParams = $request->getQueryParams();
 
         //RENDERIZA OS LINKS
         foreach ($pages as $page) {
             //ALTERA A PAGINA
-            $querryparams['page'] = $page['page'];
+            $querryParams['page'] = $page['page'];
             
             //LINK
-            $link =$url.'?'.http_build_query($querryparams);
+            $link =$url.'?'.http_build_query($querryParams);
 
             //VIEW
             $links.=View::render('pages/pagination/link', [
@@ -68,6 +68,7 @@ class Page{
             'links' => $links
         ]);
     }
+    
     /**
      * Metodo resonsavel por retornar o conteudo (view) da nossa pagina generica
      * @return string
