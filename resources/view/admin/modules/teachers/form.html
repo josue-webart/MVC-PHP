@@ -1,0 +1,37 @@
+<h1>{{tittle}}</h1>
+
+<hr>
+
+<a href="{{URL}}/admin/teachers">
+    <button type="button" class="btn btn-warning">Voltar</button>
+</a>
+
+<hr>
+
+{{status}}
+
+<form method="post">
+
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" class="form-control" name="nome" value="{{nome}}" required>
+    </div>
+
+    <div class="form-group my-3">
+        <label>Descrição</label>
+        <textarea class="form-control" rows="5" name="descricao" required>{{descricao}}</textarea>
+    </div>
+
+    <div class="form-group my-3">
+        <label>Foto</label>
+        <img src="{{URL}}/resources/img/{{foto}}.jpg" class="img-fluid" style="max-width: 60px;" alt="{{nome}}">
+        <br>
+        <input type="file" name="foto{{id}}" accept="image/*" required>
+    </div>
+
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-success"> Enviar</button>
+    </div>
+
+</form>

@@ -1,12 +1,63 @@
-<h1 class="text-center">{{name}}</h1>
-<hr>
-<div class="text-center parragrafo">
-<p>Somos uma escola on-line de idiomas para crianças e adultos.</p>
-<p>Ensinamos inglês através de um plano de estudos preparado para objetivos individuais de cada aluno focado nas 4 habilidades:</p>    
-    Listening (Escuta) <br>
-    Speaking (Fala) <br>
-    Writing (Escrita) <br>
-    Reading (Leitura) <br>
-</div>
-<hr>
+<div class="container mt-3">
+  <h1 class="text-center">{{name}}</h1>
+  <hr />
 
+  <div class="text-center p-1 lead">
+    <p>Somos uma escola on-line de idiomas para crianças e adultos.</p>
+    <p>
+      Ensinamos inglês através de um plano de estudos preparado para objetivos
+      individuais de cada aluno, focado nas 4 habilidades:
+    </p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <ul class="list-unstyled">
+            <li class="d-flex align-items-center" style="padding-top: 10px">
+              <img
+                src="{{URL}}/resources/img/head-side-headphones.svg"
+                style="max-width: 25px"
+                alt="Escuta"
+                class="mr-2"
+              />
+              Listening (Escuta)
+            </li>
+            <li class="d-flex align-items-center" style="padding-top: 10px">
+              <img
+                src="{{URL}}/resources/img/users.svg"
+                style="max-width: 25px"
+                alt="Fala"
+                class="mr-2"
+              />
+              Speaking (Fala)
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <ul class="list-unstyled">
+            <li class="d-flex align-items-center" style="padding-top: 10px">
+              <img
+                src="{{URL}}/resources/img/pencil.svg"
+                style="max-width: 25px"
+                alt="Escritura"
+                class="mr-2"
+              />
+              Writing (Escrita)
+            </li>
+            <li class="d-flex align-items-center" style="padding-top: 10px">
+              <img
+                src="{{URL}}/resources/img/subtitles.svg"
+                style="max-width: 25px"
+                alt="Reading"
+                class="mr-2"
+              />
+              Reading (Leitura)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+  {{maps}}
+</div>

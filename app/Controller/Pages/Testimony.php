@@ -53,7 +53,8 @@ class Testimony extends Page{
     public static function getTestimonies($request){
         //VIEW DE DEPOIMENTOS
         $content = View::render('pages/testimonies', [
-            'itens'=> self::getTestimoniesItems($request,$obPagination),
+            'name'       => 'Depoimentos',
+            'itens'      => self::getTestimoniesItems($request,$obPagination),
             'pagination' => parent::getPagination($request, $obPagination)
         ]);
 
