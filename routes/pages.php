@@ -4,7 +4,7 @@ use \App\Http\Response;
 use \App\Controller\Pages;
 
 //ROTA HOME
-$obRouter->get('/',[
+$obRouter->get('',[
     function(){
         return new Response(200,Pages\Home::getHome());
     }
@@ -12,8 +12,8 @@ $obRouter->get('/',[
 
 //ROTA SOBRE
 $obRouter->get('/sobre',[
-    function(){
-        return new Response(200,Pages\About::getAbout());
+    function($request){
+        return new Response(200,Pages\Teacher::getTeachers($request));
     }
 ]);
 

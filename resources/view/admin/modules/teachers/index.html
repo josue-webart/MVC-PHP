@@ -1,0 +1,27 @@
+<h1>Teachers</h1>
+<p>Profesores Ativos de Ingles</p>
+
+<hr>
+
+<a href="{{URL}}/admin/users/new">
+    <button type="button" class="btn btn-success">Cadastrar profesor</button>
+</a>
+
+<hr>
+{{status}}
+<table class="table table-light table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Descrição</th>
+            <th class="text-center">Foto</th>
+            <th class="text-center">Açoes</th>
+        </tr>
+    </thead>
+    <tbody>
+{{itens}}
+    </tbody>
+</table>
+
+{{pagination}}

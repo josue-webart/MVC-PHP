@@ -18,9 +18,9 @@ class About extends Page{
 
         //VIEW DA HOME
         $content = View::render('pages/about', [
-            'name' => $obOrganization->name,
+            'name'        => 'Sobre Nos',
             'description' => $obOrganization->description,
-            'site' => $obOrganization->site
+            'site'        => $obOrganization->site
         ]);
 
         //RETORNA A VIEW DA PAGINA

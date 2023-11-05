@@ -18,8 +18,10 @@ class Home extends Page{
 
         //VIEW DA HOME
         $content = View::render('pages/home', [
-            'name' => $obOrganization->name
+            'name' => $obOrganization->name,
+            'maps' =>View::render('pages/map', [])
         ]);
+
 
         //RETORNA A VIEW DA PAGINA
         return parent::getPage('HOME > English', $content);
